@@ -16,6 +16,23 @@ namespace OmenMon.AppGui {
     // Overrides the menu renderer
     public class GuiMenuCustomRenderer : ToolStripProfessionalRenderer {
 
+        // Use the dark theme color table
+        public GuiMenuCustomRenderer() : base(new ThemeMenuColors()) {
+            this.RoundedEdges = false;
+        }
+
+        // Draw menu text in theme colors
+        protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e) {
+            e.TextColor = e.Item.Enabled ? Theme.Text : Theme.Disabled;
+            base.OnRenderItemText(e);
+        }
+
+        // Draw submenu arrows in theme colors
+        protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e) {
+            e.ArrowColor = Theme.SubText;
+            base.OnRenderArrow(e);
+        }
+
         // Checks if an item is tagged as not selectable
         private bool IsNoSelect(object item) {
             try {

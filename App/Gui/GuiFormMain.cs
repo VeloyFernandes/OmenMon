@@ -592,6 +592,25 @@ namespace OmenMon.AppGui {
             for(int i = 0; i < Context.Op.Platform.Temperature.Length; i++)
                 SetupTmpItem(i);
 
+            // Spread the configured sensors evenly across the group
+            // and hide the unused slots (there are nine in total)
+            int count = Math.Max(1, Context.Op.Platform.Temperature.Length);
+            int slot = (this.GrpTmp.Width - 12) / count;
+            for(int i = 0; i < 9; i++) {
+                Label caption = (Label) this.GrpTmp.Controls.Find(
+                    Gui.T_LBL + Gui.G_TMP + i.ToString() + Gui.S_CAP, false)[0];
+                Label value = (Label) this.GrpTmp.Controls.Find(
+                    Gui.T_LBL + Gui.G_TMP + i.ToString() + Gui.S_VAL, false)[0];
+                bool used = i < Context.Op.Platform.Temperature.Length;
+                caption.Visible = value.Visible = used;
+                if(used) {
+                    caption.Location = new Point(6 + i * slot, 18);
+                    caption.Size = new Size(slot, 14);
+                    value.Location = new Point(6 + i * slot, 32);
+                    value.Size = new Size(slot, 27);
+                }
+            }
+
         }
 
         // Set up the description of an item within the temperature group
@@ -700,7 +719,7 @@ namespace OmenMon.AppGui {
             try {
                 if(!this.TrkFan0Lvl.Enabled)
                     this.TrkFan0Lvl.Value = Conv.GetConstrained(
-                        Context.Op.Platform.Fans.Fan[0].GetLevel(), this.TrkFan0Lvl.Minimum, this.TrkFan1Lvl.Maximum);
+                        Context.Op.Platform.Fans.Fan[0].GetLevel(), this.TrkFan0Lvl.Minimum, this.TrkFan0Lvl.Maximum);
                 if(!this.TrkFan1Lvl.Enabled)
                     this.TrkFan1Lvl.Value = Conv.GetConstrained(
                         Context.Op.Platform.Fans.Fan[1].GetLevel(), this.TrkFan1Lvl.Minimum, this.TrkFan1Lvl.Maximum);

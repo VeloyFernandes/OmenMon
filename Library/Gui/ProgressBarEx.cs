@@ -53,10 +53,12 @@ namespace OmenMon.Library {
             Rectangle Box = ClientRectangle;
             Box.Width--;
 
-            // Draw the progress bar background
-            // Depends upon OS visual-style support
-            if(ProgressBarRenderer.IsSupported)
-                ProgressBarRenderer.DrawHorizontalBar(Surface, Box);
+            // Draw the progress bar track in dark theme colors
+            Surface.Clear(Theme.Card);
+            Surface.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            using(var Track = Theme.RoundRect(new RectangleF(0, 0, Box.Width, Box.Height - 0.5f), Box.Height / 2f - 0.5f))
+            using(var TrackBrush = new SolidBrush(Theme.Input))
+                Surface.FillPath(TrackBrush, Track);
 
             // Make the progress bar drawing smaller
             // than the background by a specified inner margin

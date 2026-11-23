@@ -282,9 +282,9 @@ namespace OmenMon.Library {
                     // Populate the RTF header with colors at run-time
                     SysInfoRtfHeader = SysInfoRtfPreHeader + 
                         "{\\colortbl;"
-                        + Conv.GetColorStringRtf(SystemColors.GrayText.ToArgb())  // System Gray
-                        + Conv.GetColorStringRtf(0)                               // Black
-                        + Conv.GetColorStringRtf(GuiColorTextTeal)                // Teal
+                        + Conv.GetColorStringRtf(Theme.SubText.ToArgb())          // Secondary text (dark theme)
+                        + Conv.GetColorStringRtf(Theme.Text.ToArgb())             // Primary text (dark theme)
+                        + Conv.GetColorStringRtf(Theme.Accent2.ToArgb())          // Cyan
                         + Conv.GetColorStringRtf(GuiColorWarmDark)                // Red
                         + Conv.GetColorStringRtf(GuiColorTextBlue)                // Blue
                         + Conv.GetColorStringRtf(GuiColorWarmLite)                // Fuchsia

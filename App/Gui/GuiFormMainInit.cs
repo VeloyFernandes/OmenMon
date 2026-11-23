@@ -19,13 +19,13 @@ namespace OmenMon.AppGui {
         private Button BtnKbdColorPresetDel;  // Button to delete color preset
         private Button BtnKbdColorPresetSet;  // Button to save color preset
         private CheckBox ChkKbdBacklight;     // Checkbox to toggle backlight
-        private ComboBox CmbFanMode;          // Fan mode (built-in) list
-        private ComboBox CmbFanProg;          // Fan program (custom) list
-        private ComboBox CmbKbdColorPreset;   // Color preset list
-        private GroupBox GrpFan;              // Fan group box
-        private GroupBox GrpKbd;              // Keyboard group box
-        private GroupBox GrpSys;              // System group box
-        private GroupBox GrpTmp;              // Temperature group box
+        private ThemedComboBox CmbFanMode;          // Fan mode (built-in) list
+        private ThemedComboBox CmbFanProg;          // Fan program (custom) list
+        private ThemedComboBox CmbKbdColorPreset;   // Color preset list
+        private CardGroup GrpFan;              // Fan group box
+        private CardGroup GrpKbd;              // Keyboard group box
+        private CardGroup GrpSys;              // System group box
+        private CardGroup GrpTmp;              // Temperature group box
         private Label LblFan0Cap;             // Fan #0 caption ("CPU")
         private Label LblFan0Rte;             // Fan #0 rate [%]
         private Label LblFan0Val;             // Fan #0 value [rpm]
@@ -97,13 +97,13 @@ namespace OmenMon.AppGui {
             this.BtnKbdColorPresetDel = new Button();
             this.BtnKbdColorPresetSet = new Button();
             this.ChkKbdBacklight = new CheckBox();
-            this.CmbFanMode = new ComboBox();
-            this.CmbFanProg = new ComboBox();
-            this.CmbKbdColorPreset = new ComboBox();
-            this.GrpFan = new GroupBox();
-            this.GrpKbd = new GroupBox();
-            this.GrpSys = new GroupBox();
-            this.GrpTmp = new GroupBox();
+            this.CmbFanMode = new ThemedComboBox();
+            this.CmbFanProg = new ThemedComboBox();
+            this.CmbKbdColorPreset = new ThemedComboBox();
+            this.GrpFan = new CardGroup();
+            this.GrpKbd = new CardGroup();
+            this.GrpSys = new CardGroup();
+            this.GrpTmp = new CardGroup();
             this.LblFan0Cap = new Label();
             this.LblFan0Rte = new Label();
             this.LblFan0Val = new Label();
@@ -381,7 +381,7 @@ namespace OmenMon.AppGui {
             this.GrpFan.Controls.Add(this.TrkFan1Lvl);
 
             // Fan group settings
-            this.GrpFan.Location = new Point(416, 68);
+            this.GrpFan.Location = new Point(425, 85);
             this.GrpFan.Name = Gui.T_GRP + Gui.G_FAN;
             this.GrpFan.Size = new Size(287, 185);
             this.GrpFan.TabIndex = 3;
@@ -449,7 +449,7 @@ namespace OmenMon.AppGui {
             this.GrpKbd.Controls.Add(this.TxtKbdColorVal);
 
             // Keyboard group settings
-            this.GrpKbd.Location = new Point(6, 68);
+            this.GrpKbd.Location = new Point(12, 85);
             this.GrpKbd.Name = Gui.T_GRP + Gui.G_KBD;
             this.GrpKbd.Size = new Size(405, 185);
             this.GrpKbd.TabIndex = 2;
@@ -483,7 +483,7 @@ namespace OmenMon.AppGui {
             this.GrpSys.Controls.Add(this.RtfSysInfo);
 
             // System status group settings
-            this.GrpSys.Location = new Point(6, 3);
+            this.GrpSys.Location = new Point(12, 12);
             this.GrpSys.Name = Gui.T_GRP + Gui.G_SYS;
             this.GrpSys.Size = new Size(287, 65);
             this.GrpSys.TabIndex = 0;
@@ -648,7 +648,7 @@ namespace OmenMon.AppGui {
             this.GrpTmp.Controls.Add(this.LblTmp8Val);
 
             // Temperature group settings
-            this.GrpTmp.Location = new Point(298, 3);
+            this.GrpTmp.Location = new Point(307, 12);
             this.GrpTmp.Name = Gui.T_GRP + Gui.G_TMP;
             this.GrpTmp.Size = new Size(405, 65);
             this.GrpTmp.TabIndex = 1;
@@ -673,6 +673,7 @@ namespace OmenMon.AppGui {
             this.Icon = OmenMon.Resources.Icon;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.Padding = new Padding(0, 0, 12, 12);
             this.Name = Gui.T_FRM + "Main";
             this.Size = new Size(725, 300);
             this.SizeGripStyle = SizeGripStyle.Hide;
@@ -741,6 +742,9 @@ namespace OmenMon.AppGui {
 
             // Also make a call to perform layout where necessary
             this.GrpKbd.PerformLayout();
+
+            // Apply the modern dark theme
+            Theme.Apply(this);
 #endregion
 
 #region Component Events

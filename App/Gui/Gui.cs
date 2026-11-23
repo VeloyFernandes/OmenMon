@@ -328,6 +328,7 @@ namespace OmenMon.AppGui {
 
             // Resume the layout
             FormInputText.ResumeLayout(false);
+            Theme.Apply(FormInputText);
 
             // Show the form, and return the result
             try {

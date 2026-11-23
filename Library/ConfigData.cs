@@ -136,7 +136,7 @@ namespace OmenMon.Library {
         public const int GuiColorTextTeal = unchecked((int) 0xFF0C9D7A); // Teal
 
         // Color to draw the keyboard in if the backlight is off
-        public static int GuiColorKbdBacklightOff = System.Drawing.SystemColors.Control.ToArgb();
+        public static int GuiColorKbdBacklightOff = Theme.KbdOff.ToArgb();
 
         // Original colors for each zone, to be replaced in the keyboard drawing
         // Zones as defined in BiosData.KbdZone

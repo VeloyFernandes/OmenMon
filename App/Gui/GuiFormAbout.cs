@@ -209,6 +209,9 @@ namespace OmenMon.AppGui {
             // Resume the layout
             this.TblLayout.ResumeLayout(false);
             this.ResumeLayout(false);
+
+            // Apply the modern dark theme
+            Theme.Apply(this);
 #endregion
 
 #region Events

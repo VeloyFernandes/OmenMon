@@ -44,11 +44,15 @@ namespace OmenMon.AppGui {
             this.Template = new Bitmap(OmenMon.Resources.Keyboard);
 
             // Populate the color remap table with original colors to be replaced
-            this.Map = new ColorMap[4];
+            // (plus a fifth entry recoloring the black outlines for the dark theme)
+            this.Map = new ColorMap[5];
             for(int i = 0; i < 4; i++) {
                 this.Map[i] = new ColorMap();
                 this.Map[i].OldColor = Color.FromArgb(Config.GuiColorKbdZoneOrig[i]);
             }
+            this.Map[4] = new ColorMap();
+            this.Map[4].OldColor = Color.FromArgb(unchecked((int) 0xFF000000));
+            this.Map[4].NewColor = Theme.KbdOutline;
 
             // Set up the attribute structure
             this.Attributes = new ImageAttributes();
